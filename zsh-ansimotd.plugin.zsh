@@ -6,11 +6,24 @@ set -o pipefail
 
 ANSI_ART_DIR="${XDG_CONFIG_HOME:-~/.config}/ansimotd"
 
-# get a random zip
-zip_filename=$(find "$ANSI_ART_DIR" -type f -iname "*.zip" | shuf -n 1)
+[ -d $ANSI_ART_DIR ] || mkdir -p $ANSI_ART_DIR
 
-# get a random ansi/ascii file from within the zip
-ansi_filename=$(unzip -Z1 "$zip_filename"  | grep -i -E ".*\.(ans|asc)$" | shuf -n 1)
+# recursively download all zip's from the supplied url into our config dir
+# eg. ansi_art_download http://artscene.textfiles.com/artpacks/1996/
+function ansi_art_download {
+  wget --directory-prefix $ANSI_ART_DIR -r -np -l 1 -A zip "$1"
+}
+
+function ansi_art_random_zip {
+  find "$ANSI_ART_DIR" -type f -iname "*.zip" | shuf -n 1
+}
+
+function ansi_art_random_file {
+  unzip -Z1 "$1"  | grep -i -E ".*\.(ans|asc)$" | shuf -n 1
+}
+
+zip_filename=$(ansi_art_random_zip)
+ansi_filename=$(ansi_art_random_file $zip_filename)
 
 if [ $? -eq 0 ]; then
   # print and decode to stdout
