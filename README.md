@@ -28,7 +28,8 @@ finding a pack you like at [artscene](http://artscene.textfiles.com/artpacks/) a
 into the ansi art config directory
 
 ```
-# using ansi_art_download (a function provided by the plugin) to download all zip files or ansi art from 1996
+# using ansi_art_download (a function provided by the plugin) to 
+# download all zip files or ansi art from 1996
 ansi_art_download http://artscene.textfiles.com/artpacks/1996/
 
 # manually
