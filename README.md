@@ -33,7 +33,7 @@ into the ansi art config directory
 ansi_art_download http://artscene.textfiles.com/artpacks/1996/
 
 # manually
-# Copy one or more zip files containg ansi art into your ansi art config directory usually
+# Copy one or more zip files containg ansi art into your ansi art config directory 
 # which is derived from ${XDG_CONFIG_HOME:-~/.config}/ansimotd
 ```
 
