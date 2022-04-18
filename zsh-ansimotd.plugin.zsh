@@ -2,16 +2,17 @@
 # File:     /zsh-ansimotd.plugin.zsh
 # Created:  2021-11-21 13:05:00
 # Author:   Clint Plummer
+
 set -o pipefail
 
 ANSI_ART_DIR="${XDG_CONFIG_HOME:-~/.config}/ansimotd"
 
-[ -d $ANSI_ART_DIR ] || mkdir -p $ANSI_ART_DIR
+[ -d "$ANSI_ART_DIR" ] || mkdir -p "$ANSI_ART_DIR"
 
 # recursively download all zip's from the supplied url into our config dir
 # eg. ansi_art_download http://artscene.textfiles.com/artpacks/1996/
 function ansi_art_download {
-  wget --directory-prefix $ANSI_ART_DIR -r -np -l 1 -A zip "$1"
+  wget --directory-prefix "$ANSI_ART_DIR" -r -np -l 1 -A zip "$1"
 }
 
 function ansi_art_random_zip {
@@ -19,12 +20,15 @@ function ansi_art_random_zip {
 }
 
 function ansi_art_random_file {
-  unzip -Z1 "$1"  | grep -i -E ".*\.(ans|asc)$" | shuf -n 1
+  if [ -n "$1" ]; then
+    unzip -Z1 "$1"  | grep -i -E ".*\.(ans|asc|img)$" | shuf -n 1
+  fi;
 }
 
 function ansi_art_random {
-  local zip_filename=$(ansi_art_random_zip)
-  local ansi_filename=$(ansi_art_random_file $zip_filename)
+  zip_filename="$(ansi_art_random_zip)"
+  ansi_filename="$(ansi_art_random_file "$zip_filename")"
+
 
   if [ -n "$ansi_filename" ]; then
     # print and decode to stdout
@@ -33,6 +37,14 @@ function ansi_art_random {
     # save these incase the user wants to find them later
     export ANSI_MOTD_ZIP="$zip_filename"
     export ANSI_MOTD_FILENAME="$ansi_filename"
+  else
+    # TODO: Swap these out with the calling script name
+    echo "\
+zsh-ansimotd.plugin.zsh:
+I couldn't find any ansi art to display, I tried looking in '$ANSI_ART_DIR' 😢
+There are many artpacks available at http://artscene.textfiles.com/artpacks/
+You can download an entire years worth of art using 'ansi_art_download'
+eg. ansi_art_download http://artscene.textfiles.com/artpacks/1996/ " >&2
   fi;
 }
 
