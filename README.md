@@ -16,7 +16,7 @@ to replicate the experience of jumping onto a new BBS everytime I started my log
 znap source yuhonas/zsh-ansimotd
 
 # for antigen
-antigen bundle 'yuhonas/zsh-ansimotd'
+antigen bundle yuhonas/zsh-ansimotd
 
 # manually
 # Clone the repository and source it in your shell's rc file
@@ -24,22 +24,20 @@ antigen bundle 'yuhonas/zsh-ansimotd'
 
 ### Getting some awesome ansi art to display
 After installation you'll need to download some ansi art for it to randomly display, I suggest
-finding a pack you like at [artscene](http://artscene.textfiles.com/artpacks/) and saving it
-into the ansi art config directory
+finding a pack you like at [artscene](http://artscene.textfiles.com/artpacks/) and unpacking it
+into the ansi motd config directory
+
+You can do this by
 
 ```
-# using ansi_art_download (a function provided by the plugin) to 
-# download all zip files or ansi art from 1996
+# using ansi_art_download (a function provided by the plugin) to download all zip files of ansi art from 1996
+# and unpack them into the ansi motd config directory
 ansi_art_download http://artscene.textfiles.com/artpacks/1996/
 
 # manually
-# Copy one or more zip files containg ansi art into your ansi art config directory 
+# Copy any `.ans`, `.img` or `.asc` files containg ansi art into your ansi art config directory
 # which is derived from ${XDG_CONFIG_HOME:-~/.config}/ansimotd
 ```
 
-
-
-
-
-
-
+### Note
+The ansi art is assumed to use the [Code Page 437]( https://en.wikipedia.org/wiki/Code_page_437 ) character set

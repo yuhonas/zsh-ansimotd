@@ -10,32 +10,42 @@ ANSI_ART_DIR="${XDG_CONFIG_HOME:-~/.config}/ansimotd"
 [ -d "$ANSI_ART_DIR" ] || mkdir -p "$ANSI_ART_DIR"
 
 # recursively download all zip's from the supplied url into our config dir
-# eg. ansi_art_download http://artscene.textfiles.com/artpacks/1996/
+# then unpack all displayable art
+# eg. ansi_art_download "http://artscene.textfiles.com/artpacks/1996/"
 function ansi_art_download {
-  wget --directory-prefix "$ANSI_ART_DIR" -r -np -l 1 -A zip "$1"
+  wget --directory-prefix "$ANSI_ART_DIR" --recursive \
+        --no-verbose --no-clobber --no-parent --level= 1 --accept zip "$1"
+
+  cd $ANSI_ART_DIR
+
+  for file in **/*.zip
+  do
+    # UnZip 6.00
+    # no long flag options unfortunately
+    # so run with quiet mode, never overwite, case insensitive case match for the filename
+    # and extract to a directory of the zip's filename (minus extension)
+    unzip -q -n -C $file '*.ans' '*.img' '*.asc' -d $ANSI_ART_DIR/$file:r
+  done
 }
 
-function ansi_art_random_zip {
-  find "$ANSI_ART_DIR" -type f -iname "*.zip" | shuf -n 1
-}
-
+# find a random piece of ansi art to display
 function ansi_art_random_file {
-  if [ -n "$1" ]; then
-    unzip -Z1 "$1"  | grep -i -E ".*\.(ans|asc|img)$" | shuf -n 1
-  fi;
+  find "$ANSI_ART_DIR" -type f \
+   -iname '*.ans' -or \
+   -iname '*.img' -or \
+   -iname '*.asc' |\
+   shuf -n 1
 }
 
 function ansi_art_random {
-  zip_filename="$(ansi_art_random_zip)"
-  ansi_filename="$(ansi_art_random_file "$zip_filename")"
-
+  ansi_filename="$(ansi_art_random_file)"
 
   if [ -n "$ansi_filename" ]; then
-    # print and decode to stdout
-    unzip -q -p "$zip_filename" "$ansi_filename" | iconv -f 437
+    # convert from the original character set (Code page 437)
+    # see https://en.wikipedia.org/wiki/Code_page_437
+    iconv -f 437 < $ansi_filename
 
-    # save these incase the user wants to find them later
-    export ANSI_MOTD_ZIP="$zip_filename"
+    # record the filename in this session incase the user wants to find it later
     export ANSI_MOTD_FILENAME="$ansi_filename"
   else
     # TODO: Swap these out with the calling script name
@@ -43,8 +53,8 @@ function ansi_art_random {
 zsh-ansimotd.plugin.zsh:
 I couldn't find any ansi art to display, I tried looking in '$ANSI_ART_DIR' 😢
 There are many artpacks available at http://artscene.textfiles.com/artpacks/
-You can download an entire years worth of art using 'ansi_art_download'
-eg. ansi_art_download http://artscene.textfiles.com/artpacks/1996/ " >&2
+You can download an unpack one of these using 'ansi_art_download'
+eg. ansi_art_download http://artscene.textfiles.com/artpacks/1996/" >&2
   fi;
 }
 
