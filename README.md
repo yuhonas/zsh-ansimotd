@@ -6,8 +6,8 @@ This zsh plugin adds an old skool ansi art based motd when the login shell is ex
 
 ## Why
 
-I grew up in the day's of BBS's and [ ansi art ](https://en.wikipedia.org/wiki/ANSI_art) so I wanted something
-to replicate the experience of jumping onto a new BBS everytime I started my login shell
+I grew up in the day's of [ BBS's ](https://en.wikipedia.org/wiki/Bulletin_board_system) and [ ansi art ](https://en.wikipedia.org/wiki/ANSI_art) so I wanted something
+to replicate the experience of jumping onto a new [ BBS ](https://en.wikipedia.org/wiki/Bulletin_board_system) everytime I started my login shell
 
 ## Installation
 
@@ -40,4 +40,9 @@ ansi_art_download http://artscene.textfiles.com/artpacks/1996/
 ```
 
 ### Note
-The ansi art is assumed to use the [Code Page 437]( https://en.wikipedia.org/wiki/Code_page_437 ) character set
+Art to be displayed is assumed to use the [Code Page 437]( https://en.wikipedia.org/wiki/Code_page_437 ) character set
+
+
+## License
+
+This project is licensed under the [ MIT ](./LICENSE) license
