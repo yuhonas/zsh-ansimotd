@@ -24,7 +24,7 @@ function ansi_art_download {
     # no long flag options unfortunately
     # so run with quiet mode, never overwite, case insensitive case match for the filename
     # and extract to a directory of the zip's filename (minus extension)
-    unzip -q -n -C $file '*.ans' '*.img' '*.asc' -d $ANSI_ART_DIR/$file:r
+    unzip -q -n -C "$file" '*.ans' '*.img' '*.asc' -d "$ANSI_ART_DIR/$file:r"
   done
 }
 
@@ -48,7 +48,6 @@ function ansi_art_random {
     # record the filename in this session incase the user wants to find it later
     export ANSI_MOTD_FILENAME="$ansi_filename"
   else
-    # TODO: Swap these out with the calling script name
     echo "\
 zsh-ansimotd.plugin.zsh:
 I couldn't find any ansi art to display, I tried looking in '$ANSI_ART_DIR' 😢
