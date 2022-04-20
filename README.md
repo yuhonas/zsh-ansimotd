@@ -32,11 +32,14 @@ You can do this by
 ```
 # using ansi_art_download (a function provided by the plugin) to download all zip files of ansi art from 1996
 # and unpack them into the ansi motd config directory
-ansi_art_download http://artscene.textfiles.com/artpacks/1996/
+# note: this can take a while depending on the amount of ansi art contained in that year
+
+$ ansi_art_download http://artscene.textfiles.com/artpacks/1996/
 
 # manually
 # Copy any `.ans`, `.img` or `.asc` files containg ansi art into your ansi art config directory
 # which is derived from ${XDG_CONFIG_HOME:-~/.config}/ansimotd
+# note: it's a recursive search so any directory nesting is fine
 ```
 
 ### Note
