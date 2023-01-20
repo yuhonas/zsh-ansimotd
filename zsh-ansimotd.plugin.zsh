@@ -30,11 +30,23 @@ function ansi_art_download {
 
 # find a random piece of ansi art to display
 function ansi_art_random_file {
-  find "$ANSI_ART_DIR" -type f \
-   -iname '*.ans' -or \
-   -iname '*.img' -or \
-   -iname '*.asc' |\
-   shuf -n 1
+  # if fd is installed let's use that, it's faster (at least in my testing)
+  # https://github.com/sharkdp/fd
+  if (( $+commands[fd] )); then
+    fd --extension ans \
+       --extension img \
+       --extension asc \
+       --absolute-path \
+       --type f \
+       --search-path "$ANSI_ART_DIR" |\
+       shuf -n 1
+  else
+    find "$ANSI_ART_DIR" -type f \
+     -iname '*.ans' -or \
+     -iname '*.img' -or \
+     -iname '*.asc' |\
+     shuf -n 1
+  fi;
 }
 
 function ansi_art_random {
