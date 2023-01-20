@@ -16,6 +16,9 @@ to replicate the experience of jumping onto a new [ BBS ](https://en.wikipedia.o
 * [zsh](https://www.zsh.org/)
 * [shuf]( https://en.wikipedia.org/wiki/Shuf) which is part of gnu [coreutils](https://formulae.brew.sh/formula/coreutils)
 
+#### Optional
+* [fd](https://github.com/sharkdp/fd) a modern `find` replacement, it will use this preferentially if it's installed otherwise fallback to `find`
+
 
 ### Install using your favourite plugin manager or not
 
