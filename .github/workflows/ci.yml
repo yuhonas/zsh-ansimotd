@@ -1,0 +1,16 @@
+name: Lint for errors
+on:
+  push:
+    branches: ['main']
+jobs:
+  lint:
+    name: Basic linting for syntax errors
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Install zsh
+        run: sudo apt-get update; sudo apt-get install zsh
+      - name: Lint the plugin
+        run: make lint
+        shell: zsh {0}
