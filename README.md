@@ -1,4 +1,4 @@
-# zsh ansi motd (message of the day)
+# zsh ansi motd (message of the day) [![Lint for errors](https://github.com/yuhonas/zsh-ansimotd/actions/workflows/ci.yml/badge.svg)](https://github.com/yuhonas/zsh-ansimotd/actions/workflows/ci.yml)
 
 This zsh plugin adds an old skool ansi art based motd when the login shell is executed
 
