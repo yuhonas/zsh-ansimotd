@@ -5,7 +5,7 @@
 
 set -o pipefail
 
-ANSI_ART_DIR="${XDG_CONFIG_HOME:-~/.config}/ansimotd"
+ANSI_ART_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/ansimotd"
 
 [ -d "$ANSI_ART_DIR" ] || mkdir -p "$ANSI_ART_DIR"
 
@@ -16,7 +16,7 @@ function ansi_art_download {
   wget --directory-prefix "$ANSI_ART_DIR" --recursive \
        --no-verbose --no-clobber --no-parent --level= 1 --accept zip "$1"
 
-  cd $ANSI_ART_DIR
+  cd "$ANSI_ART_DIR"
 
   for file in **/*.zip
   do
