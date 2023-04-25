@@ -16,6 +16,12 @@ to replicate the experience of jumping onto a new [ BBS ](https://en.wikipedia.o
 * [zsh](https://www.zsh.org/)
 * [shuf]( https://en.wikipedia.org/wiki/Shuf) which is part of gnu [coreutils](https://formulae.brew.sh/formula/coreutils)
 
+For Mac/Linux using [ Homebrew ](https://brew.sh/) you can install coreutils using
+
+```
+brew install coreutils
+```
+
 #### Optional
 * [fd](https://github.com/sharkdp/fd) a modern `find` replacement, it will use this preferentially if it's installed otherwise fallback to `find`
 
@@ -40,14 +46,23 @@ into the ansi motd config directory
 
 You can do this by
 
-1. Using [ansi_art_download](https://github.com/yuhonas/zsh-ansimotd/blob/main/zsh-ansimotd.plugin.zsh#L15) (a function provided by the plugin) to download all zip files of ansi art from 1996 and unpack them into the ansi motd config directory (this can take a while depending on the amount of ansi art contained in that year)
+#### Using the plugins helper function
+Use [ansi_art_download](https://github.com/yuhonas/zsh-ansimotd/blob/main/zsh-ansimotd.plugin.zsh#L15) to download all zip files of ansi art from a url and unpack them into the ansi motd config directory (this can take a while depending on the amount of ansi art contained in that year)
 
-eg.
+eg. to download and unpack all ansi art from `1996` (one of my favourites) from the url http://artscene.textfiles.com/artpacks/1996/ run the following in your shell
+
 ```
 ansi_art_download http://artscene.textfiles.com/artpacks/1996/
 ```
 
-2. Manually by copying any `.ans`, `.img` or `.asc` files containg ansi art into your ansi art config directory which is derived from `${XDG_CONFIG_HOME:-~/.config}/ansimotd` (it's a recursive search so any directory nesting is fine)
+#### Manually
+
+Copy any `.ans`, `.img` or `.asc` files containg ansi art into your ansi art config directory which is derived from `${XDG_CONFIG_HOME:-$HOME/.config}/ansimotd` (the plugin performs a recursive search for art so any directory nesting is fine)
+
+### Damn that piece of ansi art that just got shown was awesome! which one was it?
+
+They're all pretty awesome but if you happen to fall in love with one in particular the plugin keeps the full path of the one displayed in the current session under the ENV variable `ANSI_MOTD_FILENAME` so you can track it down
+
 
 ### Note
 Art to be displayed is assumed to use the [Code Page 437]( https://en.wikipedia.org/wiki/Code_page_437 ) character set
