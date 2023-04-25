@@ -40,18 +40,14 @@ into the ansi motd config directory
 
 You can do this by
 
-```
-# using ansi_art_download (a function provided by the plugin) to download all zip files of ansi art from 1996
-# and unpack them into the ansi motd config directory
-# note: this can take a while depending on the amount of ansi art contained in that year
+1. Using [ansi_art_download](https://github.com/yuhonas/zsh-ansimotd/blob/main/zsh-ansimotd.plugin.zsh#L15) (a function provided by the plugin) to download all zip files of ansi art from 1996 and unpack them into the ansi motd config directory (this can take a while depending on the amount of ansi art contained in that year)
 
-$ ansi_art_download http://artscene.textfiles.com/artpacks/1996/
-
-# manually
-# Copy any `.ans`, `.img` or `.asc` files containg ansi art into your ansi art config directory
-# which is derived from ${XDG_CONFIG_HOME:-~/.config}/ansimotd
-# note: it's a recursive search so any directory nesting is fine
+eg.
 ```
+ansi_art_download http://artscene.textfiles.com/artpacks/1996/
+```
+
+2. Manually by copying any `.ans`, `.img` or `.asc` files containg ansi art into your ansi art config directory which is derived from `${XDG_CONFIG_HOME:-~/.config}/ansimotd` (it's a recursive search so any directory nesting is fine)
 
 ### Note
 Art to be displayed is assumed to use the [Code Page 437]( https://en.wikipedia.org/wiki/Code_page_437 ) character set
