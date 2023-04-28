@@ -14,7 +14,7 @@ ANSI_ART_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/ansimotd"
 # eg. ansi_art_download "http://artscene.textfiles.com/artpacks/1996/"
 function ansi_art_download {
   wget --directory-prefix "$ANSI_ART_DIR" --recursive \
-       --no-verbose --no-clobber --no-parent --level 1 --accept zip "$1"
+       --no-verbose --no-clobber --no-parent --level 1 --accept zip,rar "$1"
 
   cd "$ANSI_ART_DIR"
 
@@ -26,6 +26,19 @@ function ansi_art_download {
     # and extract to a directory of the zip's filename (minus extension)
     unzip -q -n -C "$file" '*.ans' '*.img' '*.asc' -d "$ANSI_ART_DIR/$file:r"
   done
+
+  if (( $+commands[unrar] )); then
+    for file in **/*.rar
+    do
+      root=$(dirname "$file")
+      dir=$(basename "$file" .rar)
+      unrar e "$file" -o- -idq \
+        '*.ans' '*.Ans' '*.ANS' \
+        '*.img' '*.Img' '*.IMG' \
+        '*.asc' '*.Asc' '*.ASC' \
+        "$root/$dir/"
+    done
+  fi
 }
 
 # find a random piece of ansi art to display

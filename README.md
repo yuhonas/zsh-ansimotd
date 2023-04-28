@@ -22,6 +22,9 @@ For Mac/Linux using [ Homebrew ](https://brew.sh/) you can install coreutils usi
 
 ```
 brew install coreutils
+
+# optional
+brew install fd pv rar
 ```
 
 #### Optional
@@ -30,6 +33,8 @@ brew install coreutils
   limit the output speed, to emulate the feel of the slower output.
 
   Set `ANSI_MOTD_RATE_LIMIT_OUTPUT` to eg `8k` to limit data rate to 8192 bps.
+* `rar` / `unrar` an unpacker for the proprietary archive file format sometimes
+  used for storing ANSI art files.
 
 ### Install using your favourite plugin manager or not
 
