@@ -53,9 +53,16 @@ function ansi_art_random {
   ansi_filename="$(ansi_art_random_file)"
 
   if [ -n "$ansi_filename" ]; then
+    # turn off automatic margins (a.k.a. line wrapping) unless we've been told not to
+    # this so it'll still render something usable even if the terminal is too narrow
+    if [ -z "$ANSI_MOTD_DONT_DISABLE_LINE_WRAPPING" ]; then print -n '\e[?7l'; fi;
+
     # convert from the original character set (Code page 437)
     # see https://en.wikipedia.org/wiki/Code_page_437
     iconv -f 437 < $ansi_filename
+
+    # restore automatic margins unless we've been told not to
+    if [ -z "$ANSI_MOTD_DONT_DISABLE_LINE_WRAPPING" ]; then print -n '\e[?7h'; fi;
 
     # record the filename in this session incase the user wants to find it later
     export ANSI_MOTD_FILENAME="$ansi_filename"

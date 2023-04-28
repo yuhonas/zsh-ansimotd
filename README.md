@@ -73,3 +73,8 @@ Art to be displayed is assumed to use the [Code Page 437]( https://en.wikipedia.
 ## License
 
 This project is licensed under the [ MIT ](./LICENSE) license
+
+### Special Thanks 🙇
+
+* To [romkatv](https://www.reddit.com/r/zsh/comments/12ueb6b/comment/jhmlgez/?utm_source=share&utm_medium=web2x&context=3) for posting a fix for the word wrapping issue on narrow terminals
+* To [mainsm](https://github.com/yuhonas/zsh-ansimotd/issues/5#issue-1683181011) for posting 👆 as an issue in the repo

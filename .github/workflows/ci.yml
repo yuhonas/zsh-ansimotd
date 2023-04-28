@@ -1,7 +1,9 @@
 name: Lint for errors
 on:
   push:
-    branches: ['main']
+    branches: [main]
+  pull_request:
+    branches: [main]
 jobs:
   lint:
     name: Basic linting for syntax errors
