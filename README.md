@@ -26,7 +26,10 @@ brew install coreutils
 
 #### Optional
 * [fd](https://github.com/sharkdp/fd) a modern `find` replacement, it will use this preferentially if it's installed otherwise fallback to `find`
+* [pv](https://www.ivarch.com/programs/pv.shtml) a pipe viewer with which we can
+  limit the output speed, to emulate the feel of the slower output.
 
+  Set `ANSI_MOTD_RATE_LIMIT_OUTPUT` to eg `8k` to limit data rate to 8192 bps.
 
 ### Install using your favourite plugin manager or not
 

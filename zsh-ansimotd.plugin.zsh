@@ -52,6 +52,12 @@ function ansi_art_random_file {
 function ansi_art_random {
   ansi_filename="$(ansi_art_random_file)"
 
+  # optional use pv to limit rate we output
+  viewer=(cat)
+  if (( $+commands[pv] )); then
+    viewer=(pv --quiet --rate-limit ${ANSI_MOTD_RATE_LIMIT_OUTPUT:-1T})
+  fi
+
   if [ -n "$ansi_filename" ]; then
     # turn off automatic margins (a.k.a. line wrapping) if we've been told too
     # this is so it'll still render something usable even if the terminal is too narrow
@@ -59,7 +65,7 @@ function ansi_art_random {
 
     # convert from the original character set (Code page 437)
     # see https://en.wikipedia.org/wiki/Code_page_437
-    iconv -f 437 < $ansi_filename
+    iconv -f 437 < $ansi_filename | ${viewer}
 
     # restore automatic margins if we've been told too
     if [ -n "$ANSI_MOTD_DISABLE_LINE_WRAPPING" ]; then print -n '\e[?7h'; fi;
