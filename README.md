@@ -65,6 +65,20 @@ Copy any `.ans`, `.img` or `.asc` files containg ansi art into your ansi art con
 
 They're all pretty awesome but if you happen to fall in love with one in particular the plugin keeps the full path of the one displayed in the current session under the ENV variable `ANSI_MOTD_FILENAME` so you can track it down
 
+### I'm running this on a small fixed screen size and all the ANSI is garbled/wrapped
+
+If you happen to be running on a small fixed screen perhaps on something like [termux](https://termux.dev/en/)
+
+Simply set the ENV variable `ANSI_MOTD_DISABLE_LINE_WRAPPING` (before plugin instantiation) and the ansi art will be truncated to screen length
+
+eg.
+
+```
+export ANSI_MOTD_DISABLE_LINE_WRAPPING=1
+```
+
+See also [Issue #5](https://github.com/yuhonas/zsh-ansimotd/issues/5)
+
 
 ### Note
 Art to be displayed is assumed to use the [Code Page 437]( https://en.wikipedia.org/wiki/Code_page_437 ) character set
