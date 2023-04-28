@@ -14,7 +14,7 @@ ANSI_ART_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/ansimotd"
 # eg. ansi_art_download "http://artscene.textfiles.com/artpacks/1996/"
 function ansi_art_download {
   wget --directory-prefix "$ANSI_ART_DIR" --recursive \
-       --no-verbose --no-clobber --no-parent --level= 1 --accept zip "$1"
+       --no-verbose --no-clobber --no-parent --level 1 --accept zip "$1"
 
   cd "$ANSI_ART_DIR"
 
