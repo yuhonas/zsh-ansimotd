@@ -37,6 +37,9 @@ znap source yuhonas/zsh-ansimotd
 # for antigen
 antigen bundle yuhonas/zsh-ansimotd
 
+# for zplug
+zplug "yuhonas/zsh-ansimotd"
+
 # manually
 # Clone the repository and source it in your shell's rc file
 ```
