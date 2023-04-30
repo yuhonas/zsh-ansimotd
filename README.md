@@ -40,6 +40,9 @@ znap source yuhonas/zsh-ansimotd
 # for antigen
 antigen bundle yuhonas/zsh-ansimotd
 
+# for zplug
+zplug "yuhonas/zsh-ansimotd"
+
 # manually
 # Clone the repository and source it in your shell's rc file
 ```
@@ -87,9 +90,17 @@ See also [Issue #5](https://github.com/yuhonas/zsh-ansimotd/issues/5)
 Art to be displayed is assumed to use the [Code Page 437]( https://en.wikipedia.org/wiki/Code_page_437 ) character set
 
 
-## License
+### License
 
 This project is licensed under the [ MIT ](./LICENSE) license
+
+### Contributors
+
+<a href="https://github.com/yuhonas/zsh-ansimotd/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=yuhonas/zsh-ansimotd" />
+</a>
+
+Made with [contrib.rocks](https://contrib.rocks).
 
 ### Special Thanks 🙇
 
