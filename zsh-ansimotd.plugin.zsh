@@ -5,18 +5,18 @@
 
 set -o pipefail
 
-ANSI_ART_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/ansimotd"
+export ANSI_MOTD_ART_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/ansimotd"
 
-[ -d "$ANSI_ART_DIR" ] || mkdir -p "$ANSI_ART_DIR"
+[ -d "$ANSI_MOTD_ART_DIR" ] || mkdir -p "$ANSI_MOTD_ART_DIR"
 
 # recursively download all zip's from the supplied url into our config dir
 # then unpack all displayable art
 # eg. ansi_art_download "http://artscene.textfiles.com/artpacks/1996/"
 function ansi_art_download {
-  wget --directory-prefix "$ANSI_ART_DIR" --recursive \
+  wget --directory-prefix "$ANSI_MOTD_ART_DIR" --recursive \
        --no-verbose --no-clobber --no-parent --level 1 --accept zip "$1"
 
-  cd "$ANSI_ART_DIR"
+  cd "$ANSI_MOTD_ART_DIR"
 
   for file in **/*.zip
   do
@@ -24,7 +24,7 @@ function ansi_art_download {
     # no long flag options unfortunately
     # so run with quiet mode, never overwite, case insensitive case match for the filename
     # and extract to a directory of the zip's filename (minus extension)
-    unzip -q -n -C "$file" '*.ans' '*.img' '*.asc' -d "$ANSI_ART_DIR/$file:r"
+    unzip -q -n -C "$file" '*.ans' '*.img' '*.asc' -d "$ANSI_MOTD_ART_DIR/$file:r"
   done
 }
 
@@ -38,10 +38,10 @@ function ansi_art_random_file {
        --extension asc \
        --absolute-path \
        --type f \
-       --search-path "$ANSI_ART_DIR" |\
+       --search-path "$ANSI_MOTD_ART_DIR" |\
        shuf -n 1
   else
-    find "$ANSI_ART_DIR" -type f \
+    find "$ANSI_MOTD_ART_DIR" -type f \
      -iname '*.ans' -or \
      -iname '*.img' -or \
      -iname '*.asc' |\
@@ -75,7 +75,7 @@ function ansi_art_random {
   else
     echo "\
 zsh-ansimotd.plugin.zsh:
-I couldn't find any ansi art to display, I tried looking in '$ANSI_ART_DIR' 😢
+I couldn't find any ansi art to display, I tried looking in '$ANSI_MOTD_ART_DIR' 😢
 There are many artpacks available at http://artscene.textfiles.com/artpacks/
 You can download an unpack one of these using 'ansi_art_download'
 eg. ansi_art_download http://artscene.textfiles.com/artpacks/1996/" >&2
