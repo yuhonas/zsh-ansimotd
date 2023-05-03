@@ -26,9 +26,7 @@ brew install coreutils
 
 #### Optional
 * [fd](https://github.com/sharkdp/fd) a modern `find` replacement, it will use this preferentially if it's installed otherwise fallback to `find`
-* [pv](https://www.ivarch.com/programs/pv.shtml) a pipe viewer with which can limit the output speed, to emulate the feel of the slower output.
-
-Set `ANSI_MOTD_RATE_LIMIT_OUTPUT` to eg `8k` to limit data rate to 8192 bps.
+* [pv](https://www.ivarch.com/programs/pv.shtml) a pipe viewer which can limit the art rendering speed to [emulate the feel of an old skool BBS](https://github.com/yuhonas/zsh-ansimotd#the-real-bbs-experience)
 
 ### Install using your favourite plugin manager or not
 
@@ -78,23 +76,34 @@ ansi_art_download http://artscene.textfiles.com/artpacks/1996/
 
 Copy any `.ans`, `.img` or `.asc` files containg ansi art into your `ANSI_MOTD_ART_DIR` directory which is derived from `${XDG_CONFIG_HOME:-$HOME/.config}/ansimotd` (the plugin performs a recursive search for art so any directory nesting is fine)
 
-### Damn that piece of ansi art that just got shown was awesome! which one was it?
+### Configuration / Settings
 
-They're all pretty awesome but if you happen to fall in love with one in particular the plugin keeps the full path of the one displayed in the current session under the ENV variable `ANSI_MOTD_FILENAME` so you can track it down
+The plugin exports the following useful variables to the session
 
-### I'm running this on a small fixed screen size and all the ANSI is garbled/wrapped
+* `ANSI_MOTD_ART_DIR`  - the full path to the config directory where the plugin will search for ansi art
+* `ANSI_MOTD_FILENAME` - the full file path to the last shown peice of ansi art, if you want to do something with it, laud over it, delete it etc
 
-If you happen to be running on a small fixed screen perhaps on something like [termux](https://termux.dev/en/)
+There's also a handful of ENV variables you can use to configure the plugin (these will need to be set prior to plugin instantiation)
 
-Simply set the ENV variable `ANSI_MOTD_DISABLE_LINE_WRAPPING` (before plugin instantiation) and the ansi art will be truncated to screen length
+#### The real BBS experience
 
-eg.
+To buffer the ansi art output at a fixed speed you can set the `ANSI_MOTD_RATE_LIMIT_OUTPUT` ENV variable
+
+eg. to limit the ansi art rendering rate to a data rate of 8k
+```
+export ANSI_MOTD_RATE_LIMIT_OUTPUT="8k"
+```
+
+See also [Pull Request #10](https://github.com/yuhonas/zsh-ansimotd/pull/10#pullrequestreview-1407110513) to see it in action
+
+#### Small screens
+If you happen to be running on a small fixed screen perhaps on something like [termux](https://termux.dev/en/) you can set the following ENV variable to truncate the art to screen width
 
 ```
 export ANSI_MOTD_DISABLE_LINE_WRAPPING=1
 ```
 
-See also [Issue #5](https://github.com/yuhonas/zsh-ansimotd/issues/5)
+See also [Pull Request #6](https://github.com/yuhonas/zsh-ansimotd/pull/6)
 
 
 ### Note
