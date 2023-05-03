@@ -26,10 +26,9 @@ brew install coreutils
 
 #### Optional
 * [fd](https://github.com/sharkdp/fd) a modern `find` replacement, it will use this preferentially if it's installed otherwise fallback to `find`
-* [pv](https://www.ivarch.com/programs/pv.shtml) a pipe viewer with which we can
-  limit the output speed, to emulate the feel of the slower output.
+* [pv](https://www.ivarch.com/programs/pv.shtml) a pipe viewer with which can limit the output speed, to emulate the feel of the slower output.
 
-  Set `ANSI_MOTD_RATE_LIMIT_OUTPUT` to eg `8k` to limit data rate to 8192 bps.
+Set `ANSI_MOTD_RATE_LIMIT_OUTPUT` to eg `8k` to limit data rate to 8192 bps.
 
 ### Install using your favourite plugin manager or not
 
@@ -48,16 +47,28 @@ zplug "yuhonas/zsh-ansimotd"
 ```
 
 ### Getting some awesome ansi art to display
-After installation you'll need to download some ansi art for it to randomly display, I suggest
-finding a pack you like at [artscene](http://artscene.textfiles.com/artpacks/) and unpacking it
-into the ansi motd config directory
+
+After installation you'll need to download some ansi art for it to randomly display, I suggest a few places
+
+#### 16colo.rs
+
+Head over to [16colo.rs](https://16colo.rs/) and if you find a year(s) you like you can download everything from that year using their rsync mirror
+
+eg. to download everything from [1996](https://16colo.rs/year/1996/) to the `ANSI_MOTD_ART_DIR`
+```
+rsync -azvhP --include '*/' --include '*.ANS' --exclude '*' rsync://16colo.rs/pack/1996 "$ANSI_MOTD_ART_DIR"
+```
+
+#### artscene.textfiles.com
+
+Find a pack you like at [artscene](http://artscene.textfiles.com/artpacks/) and unpack it into the ansi motd config directory
 
 You can do this by
 
-#### Using the plugins helper function
+##### Using the plugins helper function
 Use [ansi_art_download](https://github.com/yuhonas/zsh-ansimotd/blob/main/zsh-ansimotd.plugin.zsh#L15) to download all zip files of ansi art from a url and unpack them into the ansi motd config directory (this can take a while depending on the amount of ansi art contained in that year)
 
-eg. to download and unpack all ansi art from `1996` (one of my favourites) from the url http://artscene.textfiles.com/artpacks/1996/ run the following in your shell
+eg. to download all ansi art from `1996` from the url http://artscene.textfiles.com/artpacks/1996/ run the following in your shell
 
 ```
 ansi_art_download http://artscene.textfiles.com/artpacks/1996/
@@ -65,7 +76,7 @@ ansi_art_download http://artscene.textfiles.com/artpacks/1996/
 
 #### Manually
 
-Copy any `.ans`, `.img` or `.asc` files containg ansi art into your ansi art config directory which is derived from `${XDG_CONFIG_HOME:-$HOME/.config}/ansimotd` (the plugin performs a recursive search for art so any directory nesting is fine)
+Copy any `.ans`, `.img` or `.asc` files containg ansi art into your `ANSI_MOTD_ART_DIR` directory which is derived from `${XDG_CONFIG_HOME:-$HOME/.config}/ansimotd` (the plugin performs a recursive search for art so any directory nesting is fine)
 
 ### Damn that piece of ansi art that just got shown was awesome! which one was it?
 

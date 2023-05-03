@@ -76,9 +76,9 @@ function ansi_art_random {
     echo "\
 zsh-ansimotd.plugin.zsh:
 I couldn't find any ansi art to display, I tried looking in '$ANSI_MOTD_ART_DIR' 😢
-There are many artpacks available at http://artscene.textfiles.com/artpacks/
-You can download an unpack one of these using 'ansi_art_download'
-eg. ansi_art_download http://artscene.textfiles.com/artpacks/1996/" >&2
+For help on getting some checkout the README available at
+https://github.com/yuhonas/zsh-ansimotd#getting-some-awesome-ansi-art-to-display
+" >&2
   fi;
 }
 
