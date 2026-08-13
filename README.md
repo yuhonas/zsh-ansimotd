@@ -1,3 +1,5 @@
+
+
 # zsh ansi motd (message of the day) [![Lint for errors](https://github.com/yuhonas/zsh-ansimotd/actions/workflows/ci.yml/badge.svg)](https://github.com/yuhonas/zsh-ansimotd/actions/workflows/ci.yml) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 
@@ -74,14 +76,14 @@ ansi_art_download http://artscene.textfiles.com/artpacks/1996/
 
 #### Manually
 
-Copy any `.ans`, `.img` or `.asc` files containg ansi art into your `ANSI_MOTD_ART_DIR` directory which is derived from `${XDG_CONFIG_HOME:-$HOME/.config}/ansimotd` (the plugin performs a recursive search for art so any directory nesting is fine)
+Copy any `.ans`, `.img` or `.asc` files containing ansi art into your `ANSI_MOTD_ART_DIR` directory which is derived from `${XDG_CONFIG_HOME:-$HOME/.config}/ansimotd` (the plugin performs a recursive search for art so any directory nesting is fine)
 
 ### Configuration / Settings
 
 The plugin exports the following useful variables to the session
 
 * `ANSI_MOTD_ART_DIR`  - the full path to the config directory where the plugin will search for ansi art
-* `ANSI_MOTD_FILENAME` - the full file path to the last shown peice of ansi art, if you want to do something with it, laud over it, delete it etc
+* `ANSI_MOTD_FILENAME` - the full file path to the last shown piece of ansi art, if you want to do something with it, look over it, delete it etc
 
 There's also a handful of ENV variables you can use to configure the plugin (these will need to be set prior to plugin instantiation)
 
@@ -107,7 +109,7 @@ See also [Pull Request #6](https://github.com/yuhonas/zsh-ansimotd/pull/6)
 
 
 ### Note
-Art to be displayed is assumed to use the [Code Page 437]( https://en.wikipedia.org/wiki/Code_page_437 ) character set
+Art to be displayed is assumed to use the [Code Page 437](https://en.wikipedia.org/wiki/Code_page_437) character set
 
 
 ### License
